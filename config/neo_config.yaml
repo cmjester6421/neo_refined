@@ -1,0 +1,59 @@
+# NEO Configuration File
+
+app_name: "NEO"
+app_version: "1.0.0"
+environment: "production"
+
+# AI Engine Configuration
+ai:
+  model_path: "models/neo_ai_engine.pth"
+  learning_rate: 0.001
+  max_recursion_depth: 5
+  confidence_threshold: 0.8
+  # LLM Providers
+  llm_provider: "gemini"  # Options: gemini, openai, anthropic, local
+  gemini_model: "gemini-2.0-flash"
+  openai_model: "gpt-4"
+  anthropic_model: "claude-3-opus-20240229"
+  temperature: 0.7
+  max_tokens: 2048
+
+# System Control Configuration
+system:
+  enable_shutdown: false  # Safety: disabled by default in production
+  enable_restart: false
+  max_retries: 3
+  timeout: 30
+
+# Security Configuration
+security:
+  enable_port_scanning: true
+  max_scan_timeout: 2.0
+  password_min_length: 12
+  enable_vulnerability_scan: true
+
+# Research Configuration
+research:
+  default_depth: "moderate"
+  max_sources: 10
+  cache_results: true
+  cache_ttl: 3600
+
+# Task Automation Configuration
+task:
+  max_workers: 5
+  max_retries: 3
+  queue_size: 100
+
+# NLP Configuration
+nlp:
+  confidence_threshold: 0.7
+  max_context_messages: 10
+  enable_sentiment_analysis: true
+
+# Logging Configuration
+logging:
+  log_level: "INFO"
+  log_dir: "logs"
+  max_log_size: 10485760  # 10MB
+  backup_count: 5

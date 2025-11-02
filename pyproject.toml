@@ -1,0 +1,61 @@
+[tool.black]
+line-length = 120
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+multi_line_output = 3
+include_trailing_comma = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neo-assistant"
+version = "1.0.0"
+description = "NEO: Neural Executive Operator - Advanced AI Assistant"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "NEO Development Team", email = "neo@example.com"}
+]
+keywords = ["ai", "assistant", "automation", "machine-learning", "nlp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[project.scripts]
+neo = "src.main:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/neo"
+Documentation = "https://github.com/yourusername/neo/blob/main/docs"
+Repository = "https://github.com/yourusername/neo"
+"Bug Tracker" = "https://github.com/yourusername/neo/issues"

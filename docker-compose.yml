@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  neo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: neo-assistant
+    environment:
+      - NEO_ENV=production
+      - NEO_DEBUG=false
+      - NEO_BASE_DIR=/app
+    volumes:
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./.env:/app/.env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      - neo-network
+
+  # Optional: Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: neo-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - neo-network
+
+  # Optional: PostgreSQL for data storage
+  postgres:
+    image: postgres:15-alpine
+    container_name: neo-postgres
+    environment:
+      - POSTGRES_DB=neo
+      - POSTGRES_USER=neo
+      - POSTGRES_PASSWORD=neo_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - neo-network
+
+networks:
+  neo-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  postgres-data:
